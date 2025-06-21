@@ -1,3 +1,5 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
 steps:
   - name: 'gcr.io/cloud-builders/docker' # image prebuild oleh google
     args: ['build', '-t', 'gcr.io/innate-agency-463613-e6/fastapi-app:latest', '.']
