@@ -12,7 +12,8 @@ steps:
   # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', 'fast-api-test', '--image', 'gcr.io/innate-agency-463613-e6/fastapi-app:latest', '--region', 'us-central1', '--platform', 'managed']
+    args: ['run', 'deploy', 'fast-api-test', '--image', 'gcr.io/innate-agency-463613-e6/fastapi-app:latest',
+     '--region', 'us-central1', '--platform', 'managed', --allow-unauthenticated]
 
 images:
   - 'gcr.io/innate-agency-463613-e6/fastapi-app:latest'
