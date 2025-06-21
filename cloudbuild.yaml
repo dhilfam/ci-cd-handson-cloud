@@ -1,10 +1,18 @@
 options:
   logging: CLOUD_LOGGING_ONLY
 steps:
+  # build
   - name: 'gcr.io/cloud-builders/docker' # image prebuild oleh google
     args: ['build', '-t', 'gcr.io/innate-agency-463613-e6/fastapi-app:latest', '.']
+
+    # push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/innate-agency-463613-e6/fastapi-app:latest']
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', 'fast-api-test', '--image', 'gcr.io/innate-agency-463613-e6/fastapi-app:latest', '--region', 'us-central1', '--platform', 'managed']
 
 images:
   - 'gcr.io/innate-agency-463613-e6/fastapi-app:latest'
